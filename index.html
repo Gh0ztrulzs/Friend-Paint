@@ -28,8 +28,8 @@
 </div>
 <div id="modal" class="modal hidden"><div class="modalbox"><div class="modalhead">Report drawing</div><div class="modalbody"><select id="reportReason" class="report-reason"><option>Spam</option><option>Inappropriate content</option><option>Harassment</option><option>Other</option></select><textarea id="reportDetails" maxlength="300" placeholder="Optional details"></textarea><button id="sendReport">Send report</button> <button id="closeModal">Cancel</button></div></div></div>
 <script>
-const SUPABASE_URL='PASTE_YOUR_SUPABASE_URL_HERE';
-const SUPABASE_PUBLISHABLE_KEY='PASTE_YOUR_SUPABASE_PUBLISHABLE_KEY_HERE';
+const SUPABASE_URL='https://mldsufddazsswxkvspmq.supabase.co';
+const SUPABASE_PUBLISHABLE_KEY='sb_publishable_3FY8Nz2KpTZLNLQM9I8Nzw_u3k9bAEx';
 const db=(window.supabase&&!SUPABASE_URL.includes('PASTE_')&&!SUPABASE_PUBLISHABLE_KEY.includes('PASTE_'))?window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY):null;
 const $=id=>document.getElementById(id),canvas=$('c'),ctx=canvas.getContext('2d');
 let tool='pencil',down=false,start=null,last=null,color='#000000',history=[],future=[],currentUser=null,onlyMine=false,searchTerm='',reportDrawingId=null;
