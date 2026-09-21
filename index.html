@@ -7,11 +7,16 @@
 <style>
 *{box-sizing:border-box}body{margin:0;background:#5d9bd3;font:12px Tahoma,Arial;color:#111}.win{width:min(1240px,98vw);margin:15px auto;background:#ece9d8;border:1px solid #164a9a;box-shadow:4px 5px 12px #345;border-radius:7px 7px 0 0;overflow:hidden}.bar{height:34px;color:#fff;font-weight:bold;font-size:15px;padding:5px 8px;background:linear-gradient(#4aa4f7,#0751b5 55%,#2368c4);display:flex;justify-content:space-between}.buttons{display:flex;gap:3px}.buttons b{background:#eee;color:#111;border:1px solid #fff;width:24px;text-align:center;border-radius:3px}.menu{height:28px;padding:6px 10px;border-bottom:1px solid #aaa}.menu span{margin-right:20px}.top{padding:5px;border-bottom:1px solid #aaa}.top button,.tool,.side button,.account button,.comment button,.reply button,.filter button{background:linear-gradient(#fff,#ddd);border:1px solid #888;min-height:28px}.layout{display:grid;grid-template-columns:78px 1fr 245px;min-height:600px}.tools{padding:5px;background:#eee9d8;border-right:1px solid #aaa;display:grid;grid-template-columns:1fr 1fr;align-content:start;gap:4px}.tool{height:38px;font-size:19px}.tool.active{background:#c7d9ee;border:2px inset #aaa}.work{background:#777;padding:10px}.canvasbox{height:100%;background:#aaa;border:2px inset white;padding:12px;overflow:auto}canvas{display:block;background:#fff;width:760px;max-width:none}.side{padding:9px;background:#eee9d8;border-left:1px solid #aaa}.side h3{margin:3px 0 8px;color:#06458f;border-bottom:1px solid #aaa;padding-bottom:4px}.side input,.account input,.comment textarea{width:100%;height:26px;border:2px inset #fff;margin-bottom:7px}.side button,.account button{width:100%;height:31px;margin:3px 0;font-weight:bold}.preview{width:100%;aspect-ratio:1;object-fit:contain;background:#fff;border:2px inset #aaa}.palette{display:flex;gap:7px;padding:7px;background:#eee9d8;border-top:1px solid #aaa}.colors{display:grid;grid-template-columns:repeat(16,22px);gap:2px}.sw{width:22px;height:22px;border:1px solid #555}.gallery{padding:12px;background:#ece9d8;border-top:1px solid #888}.gallery h2{color:#06458f;font-size:18px}.feedbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.feedbar input{height:28px;border:2px inset #fff;padding:3px 6px;flex:1;min-width:180px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}.card{background:#fff;border:1px solid #888;padding:6px;box-shadow:1px 1px 0 #aaa}.card img{width:100%;aspect-ratio:1;object-fit:contain;border:1px solid #ddd}.card b,.card small{display:block;margin-top:4px}.meta{color:#555}.actions{display:flex;gap:4px;margin-top:6px}.actions button{flex:1;background:#eee;border:1px solid #888;font-size:11px;padding:4px}.count{font-weight:bold}.comments,.replies{margin-top:7px;border-top:1px dotted #aaa;padding-top:5px}.commentline{padding:4px 0;border-bottom:1px dotted #ccc}.commentline b{display:inline;margin:0}.replyimg{width:100%;margin-top:5px;border:1px solid #aaa}.smallbox{background:#f7f5e9;border:1px solid #aaa;padding:6px;margin-top:6px}.smallbox input,.smallbox textarea{width:100%;border:2px inset #fff;margin-bottom:4px}.smallbox textarea{height:48px}.account{background:#f5f2e7;border:1px solid #aaa;padding:7px;margin-bottom:8px}.account .row{display:flex;gap:4px}.account .row button{flex:1}.status{padding:5px;background:#eee9d8;border-top:1px solid #aaa;font-size:11px}.hidden{display:none!important}.notice{padding:8px;background:#fff7c7;border:1px solid #b49b2b;margin-bottom:8px}.danger{background:#ffdede!important}.pagination{margin-top:10px;text-align:center}.pagination button{margin:2px}.modal{position:fixed;inset:0;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;z-index:10}.modalbox{width:min(520px,94vw);background:#ece9d8;border:2px outset #fff;box-shadow:5px 5px 15px #333}.modalhead{background:linear-gradient(#4aa4f7,#0751b5);color:#fff;font-weight:bold;padding:6px}.modalbody{padding:12px}.modalbody textarea{width:100%;height:90px}.modalbody button{margin-top:7px}.report-reason{width:100%;height:30px}@media(max-width:850px){.layout{grid-template-columns:65px 1fr}.side{grid-column:1/-1;border-left:0;border-top:1px solid #aaa}.colors{grid-template-columns:repeat(8,22px)}}@media(max-width:500px){.layout{grid-template-columns:1fr}.tools{grid-template-columns:repeat(8,1fr);border-right:0;border-bottom:1px solid #aaa}}
 <style>
-/* Prevent the page from scrolling while drawing on the canvas */
+/* Mobile drawing fix */
+html, body {
+  overscroll-behavior: none;
+}
+
 canvas {
-  touch-action: none;
+  touch-action: none !important;
   -webkit-user-select: none;
   user-select: none;
+  -webkit-touch-callout: none;
 }
 
 /* Phone layout */
@@ -25,10 +30,17 @@ canvas {
     margin: 10px auto !important;
   }
 
+  .canvasbox {
+    touch-action: none !important;
+    overflow: hidden !important;
+  }
+
   canvas {
+    display: block;
     width: 100% !important;
     height: auto !important;
     max-width: 100%;
+    touch-action: none !important;
   }
 
   button {
@@ -44,7 +56,6 @@ canvas {
   }
 }
 </style>
-</head>
 <body>
 <div class="win">
 <div class="bar"><span>🖌️ Friend Paint — community edition</span><span class="buttons"><b>_</b><b>□</b><b>×</b></span></div>
